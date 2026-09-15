@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f26a1b">
+  <meta name="description" content="슈나우저와 함께 뛰는 귀여운 줄넘기 타이머">
+  <title>폴짝슈나 · 줄넘기 시계</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='17' fill='%23f26a1b'/%3E%3Ccircle cx='32' cy='34' r='17' fill='white'/%3E%3Cpath d='M27 12h10M32 19v15l9 6' fill='none' stroke='%237d3512' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="floating-dogs" aria-hidden="true">
+    <span>🐶</span><span>🐶</span><span>🐶</span><span>🐶</span><span>🐶</span><span>🐶</span><span>🐶</span>
+  </div>
+
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="폴짝슈나 홈">
+        <span class="brand-icon" aria-hidden="true">🐶</span>
+        <span><strong>폴짝슈나</strong><small>JUMP ROPE CLOCK</small></span>
+      </a>
+      <div class="live-time" aria-label="현재 시각">
+        <span id="liveDate">9월 15일 화요일</span>
+        <strong id="liveClock">00:00:00</strong>
+      </div>
+    </header>
+
+    <section class="workout" aria-labelledby="pageTitle">
+      <div class="intro-copy">
+        <p class="eyebrow">SCHNAUZER JUMP CLUB</p>
+        <h1 id="pageTitle">귀 쫑긋,<br><em>가볍게 폴짝!</em></h1>
+        <p class="intro-description">시간을 고르고 시작해 보세요. 한 번 뛸 때마다 카운트 버튼을 톡 눌러 기록할 수 있어요.</p>
+
+        <div class="quick-settings" aria-label="타이머 시간 선택">
+          <button type="button" data-minutes="1" aria-pressed="true">1분</button>
+          <button type="button" data-minutes="3" aria-pressed="false">3분</button>
+          <button type="button" data-minutes="5" aria-pressed="false">5분</button>
+          <button type="button" data-minutes="10" aria-pressed="false">10분</button>
+        </div>
+
+        <div class="sound-option">
+          <div>
+            <strong>종료 알림음</strong>
+            <small>운동이 끝나면 짧게 알려드려요</small>
+          </div>
+          <button class="switch" id="soundToggle" type="button" role="switch" aria-checked="true" aria-label="종료 알림음 켜기 또는 끄기"><span></span></button>
+        </div>
+      </div>
+
+      <article class="timer-card" aria-label="줄넘기 타이머">
+        <div class="session-label">
+          <span class="status-dot"></span>
+          <span id="sessionStatus">준비됐어요</span>
+        </div>
+
+        <div class="timer-face" id="timerFace">
+          <div class="dog-stage" aria-hidden="true">
+            <span class="dog-emoji" id="dogEmoji">🐶</span>
+            <span class="ear-label">SCHNAUZER</span>
+          </div>
+          <strong class="countdown" id="countdown" aria-live="polite">01:00</strong>
+          <span class="timer-caption">MINUTES · SECONDS</span>
+        </div>
+
+        <div class="timer-controls">
+          <button class="secondary-button" id="resetButton" type="button">초기화</button>
+          <button class="primary-button" id="startButton" type="button">시작</button>
+        </div>
+      </article>
+
+      <aside class="jump-card" aria-labelledby="jumpTitle">
+        <div class="jump-heading">
+          <div>
+            <p>오늘의 기록</p>
+            <h2 id="jumpTitle">줄넘기 횟수</h2>
+          </div>
+          <span id="paceBadge">0회/분</span>
+        </div>
+
+        <button class="jump-button" id="jumpButton" type="button" aria-label="줄넘기 횟수 1회 추가">
+          <span class="jump-number" id="jumpCount">0</span>
+          <span class="jump-unit">JUMPS</span>
+          <small>눌러서 +1</small>
+        </button>
+
+        <div class="jump-actions">
+          <button id="minusJump" type="button" aria-label="줄넘기 횟수 1회 줄이기">−1</button>
+          <p><kbd>Space</kbd> 키로도 기록할 수 있어요</p>
+          <button id="clearJumps" type="button">지우기</button>
+        </div>
+
+        <div class="session-summary">
+          <div><span>운동 시간</span><strong id="elapsedTime">00:00</strong></div>
+          <div><span>남은 시간</span><strong id="remainingMini">01:00</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      <span>© 2026 폴짝슈나</span>
+      <span>천천히 시작해도 좋아요. 꾸준히 폴짝!</span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
